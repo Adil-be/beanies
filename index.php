@@ -14,7 +14,13 @@ $BeaniesTab =[
 
     ['name'=>"Bonnet arc-en-ciel",
     'prix'=> 12, 
-    'description'=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur nam reprehenderit veniam aperiam impedit iure delectus,"]]
+    'description'=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur nam reprehenderit veniam aperiam impedit iure delectus,"]];
+
+    function prixHT(float $prixTTC):float{
+        return $prixTTC/1.2;
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +35,18 @@ $BeaniesTab =[
 <body>
     <h1>Listes bonnets</h1>
     <table>
-        <tr><th>nom</th><th>prix</th><th>description</th></tr>
+        <tr><th>nom</th><th>prix HT</th><th>prix TCC</th><th>description</th></tr>
 
     <?php 
     foreach($BeaniesTab as $beanie){
+        $prixTTC= number_format($beanie['prix'],2);
+        $prixHT= number_format(prixHT($prixTTC), 2);
         ?>
         <tr>
-            <td><?php echo $beanie['name'] ?> </td>
-            <td><?php echo $beanie['prix']."€" ?> </td>
+            <td><?php echo $beanie['name']; ?> </td>
+            <td><?php echo $prixHT;  ?>
+            <td class = <?php if($prixTTC<= 12) {echo 'green';}else{echo 'blue';}  ?> >
+            <?php echo $prixTTC."€"; ?> </td>
             <td><?php echo $beanie['description'] ?> </td>
         </tr>    
         <?php
