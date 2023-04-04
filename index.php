@@ -20,6 +20,20 @@ $BeaniesTab =[
         return $prixTTC/1.2;
     }
 
+    function afficherProduit($produit){
+        $prixTTC= number_format($produit['prix'],2);
+        $prixHT= number_format(prixHT($prixTTC), 2);
+        ?>
+        <tr>
+            <td><?php echo $produit['name']; ?> </td>
+            <td><?php echo $prixHT;  ?>
+            <td class = <?php if($prixTTC<= 12) {echo 'green';}else{echo 'blue';}  ?> >
+            <?php echo $prixTTC."€"; ?> </td>
+            <td><?php echo $produit['description'] ?> </td>
+        </tr>    
+        <?php
+    }
+
 
 ?>
 
@@ -39,17 +53,7 @@ $BeaniesTab =[
 
     <?php 
     foreach($BeaniesTab as $beanie){
-        $prixTTC= number_format($beanie['prix'],2);
-        $prixHT= number_format(prixHT($prixTTC), 2);
-        ?>
-        <tr>
-            <td><?php echo $beanie['name']; ?> </td>
-            <td><?php echo $prixHT;  ?>
-            <td class = <?php if($prixTTC<= 12) {echo 'green';}else{echo 'blue';}  ?> >
-            <?php echo $prixTTC."€"; ?> </td>
-            <td><?php echo $beanie['description'] ?> </td>
-        </tr>    
-        <?php
+        afficherProduit($beanie);
     }
     ?>
     </table>
