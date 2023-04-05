@@ -13,3 +13,4 @@ require_once ('variable.php');
     <title>beanies</title>
 </head>
 <body>
+    <h1>ceci est une modification pour la pull request</h1>
