@@ -1,7 +1,8 @@
 <?php 
-include_once 'include/header.php' ;
+include_once 'include/header.php' ;?>
 
-for ($i=0;$i<3; $i++){
+<section class="d-flex align-items-start flex-wrap ">
+<?php for ($i=0;$i<3; $i++){
     $beanie = $BeaniesTab[$i];
     ?>
     <div class="card" style="width: 18rem;">
@@ -13,10 +14,11 @@ for ($i=0;$i<3; $i++){
   </div>
 </div>
 <?php
-}
+}?>
+</section>
 
 
-include_once 'include/footer.php>'?>
+<?php include_once 'include/footer.php>'?>
 
 
 
