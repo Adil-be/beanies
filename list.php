@@ -4,7 +4,7 @@
         <tr><th>nom</th><th>prix HT</th><th>prix TCC</th><th>description</th></tr>
 
     <?php 
-    foreach($BeaniesTab as $beanie){
+    foreach($beaniesTab as $beanie){
         afficherProduit($beanie);
     }
     ?>

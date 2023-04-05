@@ -1,5 +1,5 @@
 <?php
-$BeaniesTab =[
+$beaniesTab =[
     ['name'=>"Bonnet en laine",
     'prix'=> 10,
     'pathImg'=>'img/beanie1.jpg',

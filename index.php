@@ -3,7 +3,7 @@ include_once 'include/header.php' ;?>
 
 <section class="d-flex align-items-start flex-wrap ">
 <?php for ($i=0;$i<3; $i++){
-    $beanie = $BeaniesTab[$i];
+    $beanie = $beaniesTab[$i];
     ?>
     <div class="card" style="width: 18rem;">
     <img src= <?php echo $beanie['pathImg'] ?> class="card-img-top" alt= <?php echo $beanie['name'] ?>>
@@ -18,7 +18,7 @@ include_once 'include/header.php' ;?>
 </section>
 
 
-<?php include_once 'include/footer.php>'?>
+<?php include_once 'include/footer.php'?>
 
 
 
