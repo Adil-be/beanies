@@ -7,11 +7,12 @@ function prixHT(float $prixTTC):float{
 function afficherProduit($produit){
     $prixTTC= number_format($produit['prix'],2,"."," ");
     $prixHT= prixHT($prixTTC);
+    ($prixTTC<= 12)? $color = "green" : $color = "blue";
     ?>
     <tr>
         <td><?php echo $produit['name']; ?> </td>
         <td><?php echo $prixHT;  ?>
-        <td class = <?php if($prixTTC<= 12) {echo 'green';}else{echo 'blue';}  ?> >
+        <td class = <?php echo $color  ?> >
         <?php echo $prixTTC."€"; ?> </td>
         <td><?php echo $produit['description'] ?> </td>
     </tr>    
