@@ -1,7 +1,8 @@
 <?php 
+$title = 'Beanies';
 include_once 'include/header.php' ;?>
 
-<section class="d-flex align-items-start flex-wrap ">
+<section class="row">
 <?php for ($i=0;$i<3; $i++){
     $beanie = $beaniesTab[$i];
     ?>

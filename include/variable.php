@@ -20,4 +20,6 @@ $beaniesTab =[
     'pathImg'=>'img/beanie4.jpg', 
     'description'=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur nam reprehenderit veniam aperiam impedit iure delectus,"]];
 
+
+    $mdp ="12345"
 ?>
