@@ -1,4 +1,6 @@
-<?php include 'include/header.php'; ?>
+<?php 
+$title = 'Produits';
+include 'include/header.php'; ?>
     <h1>Listes bonnets</h1>
     <table>
         <tr><th>nom</th><th>prix HT</th><th>prix TCC</th><th>description</th></tr>
