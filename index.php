@@ -1,25 +1,26 @@
-<?php 
-$title = 'Beanies';
-include_once 'include/header.php' ;?>
-
-<section class="row">
-<?php for ($i=0;$i<3; $i++){
-    $beanie = $beaniesTab[$i];
-    ?>
-    <div class="card" style="width: 18rem;">
-    <img src= <?php echo $beanie['pathImg'] ?> class="card-img-top" alt= <?php echo $beanie['name'] ?>>
-    <div class="card-body">
-    <h5 class="card-title"> <?php echo $beanie['name'] ?></h5>
-    <p class="card-text"> <?php echo $beanie['description'] ?></p>
-    <a href="list.php" class="btn btn-primary">Voir tous les produits</a>
-  </div>
-</div>
 <?php
-}?>
-</section>
+
+$pages=[
+    'home'=>'Chez beanies',
+    'list'=>'tous nos beanies',
+    'login'=>'Connection',
+    'logout'=>'',
+];
+
+$page ='home';
+
+if(isset($_GET['page']) && array_key_exists($_GET['page'], $pages) ){
+    $page=$_GET['page'];
+}
+
+$title = $pages[$page];
 
 
-<?php include_once 'include/footer.php'?>
+ob_start();
+require_once 'include/header.php';
 
+require_once 'pages/'.$page.'.php';
+require_once 'include/footer.php';
 
-
+ob_end_flush();
+?>
