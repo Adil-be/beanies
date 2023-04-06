@@ -1,7 +1,4 @@
 <?php 
-$title = 'Connection';
-include 'include/header.php';
-
 $error=[];
 if(isset($_POST['login']) && $_POST['password']){
   $userName =trim($_POST['login']);
@@ -18,7 +15,7 @@ if(isset($_POST['login']) && $_POST['password']){
   }
   if(empty($error)){
     $_SESSION['login']=$_POST['login'];
-    header('Location: index.php?login=success');
+    header('Location: ?login=success');
   }
 }
 
@@ -33,7 +30,7 @@ foreach($error as $message){
 ?>
 
 <section class="contanier my-5">
-    <form class="w-75 mx-auto p-5" style="background-color: #eee;" action="login.php" method="POST">
+    <form class="w-75 mx-auto p-5" style="background-color: #eee;"  method="POST">
     <h1>formulaire conection</h1>
   <div class="mb-3">
     <label for="login" class="form-label">Login</label>
@@ -46,7 +43,3 @@ foreach($error as $message){
   <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </section>
-
-
-
-<?php include 'include/footer.php' ?>

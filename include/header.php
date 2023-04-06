@@ -20,7 +20,7 @@ require_once ('variable.php');
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="?page=home">
       <img src="img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">Beanies
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,27 +29,27 @@ require_once ('variable.php');
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="?page=home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="list.php">Produits</a>
+          <a class="nav-link" href="?page=list">Produits</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
+          <a class="nav-link" href="?page=login">Login</a>
         </li>
       </ul>
       <div> <?php 
       if (isset($_SESSION['login']) && !empty($_SESSION['login'])){
         ?>
-        <a href="login.php" class="m-3"><?php echo $_SESSION['login'] ?></a>
-        <a class="btn btn-outline-success" href="logout.php">
+        <a href="?page=login" class="m-3"><?php echo $_SESSION['login'] ?></a>
+        <a class="btn btn-outline-success" href="?page=logout">
           logout
         </a>
 
         <?php
       } else{
         ?>
-          <a class="btn btn-outline-success" href="login.php">Login</a>
+          <a class="btn btn-outline-success" href="?page=login">Login</a>
         <?php
       }
       ?>
@@ -67,7 +67,7 @@ if (isset($_GET['login']) ){
     Vous etes bien connecté!
   </div>
   <?php
-  }elseif($_GET['login']=='disconnected'){
+  }else if($_GET['login']=='disconnected'){
     ?>
   <div class="alert alert-danger" role="alert">
     Vous etes deconnecté!
