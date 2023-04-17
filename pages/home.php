@@ -8,7 +8,7 @@
     <div class="card-body">
     <h5 class="card-title"> <?php echo $beanie['name'] ?></h5>
     <p class="card-text"> <?php echo $beanie['description'] ?></p>
-    <a href="list.php" class="btn btn-primary">Voir tous les produits</a>
+    <a href="?page=list" class="btn btn-primary">Voir tous les produits</a>
   </div>
 </div>
 <?php

@@ -17,7 +17,7 @@ require_once ('variable.php');
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <title><?php echo $title ?></title>
 </head>
-<body>
+<body class="">
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="?page=home">
@@ -35,7 +35,7 @@ require_once ('variable.php');
           <a class="nav-link" href="?page=list">Produits</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=login">Login</a>
+          <a class="nav-link" href="?page=cart">Panier</a>
         </li>
       </ul>
       <div> <?php 

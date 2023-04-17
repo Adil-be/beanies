@@ -31,7 +31,7 @@ foreach($error as $message){
 
 <section class="contanier my-5">
     <form class="w-75 mx-auto p-5" style="background-color: #eee;"  method="POST">
-    <h1>formulaire conection</h1>
+    <h1>formulaire connexion</h1>
   <div class="mb-3">
     <label for="login" class="form-label">Login</label>
     <input type="text" class="form-control" id="login" aria-describedby="emailHelp" name='login'>
