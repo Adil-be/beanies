@@ -6,8 +6,8 @@
 
     <?php 
 
-    foreach($beaniesTab as $key => $beanie){
-        afficherProduit($key, $beanie);
+    foreach($beaniesObj as $beanie){
+        afficherProduit($beanie);
      
     }
     ?>
