@@ -37,6 +37,9 @@ require_once ('variable.php');
         <li class="nav-item">
           <a class="nav-link" href="?page=cart">Panier</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="?page=contact">contact</a>
+        </li>
       </ul>
       <div> <?php 
       if (isset($_SESSION['login']) && !empty($_SESSION['login'])){

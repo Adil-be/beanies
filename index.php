@@ -5,6 +5,7 @@ $pages=[
     'list'=>'tous nos beanies',
     'login'=>'Connection',
     'cart'=>'Panier',
+    'contact'=> 'nous contacter',
     'logout'=>'',
 ];
 
