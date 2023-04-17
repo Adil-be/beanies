@@ -66,12 +66,12 @@ if(isset($_GET['id']) && isset($_GET['action'])){
                     <td><?= $beanie['prix']?>€</td>
                     <td><?= $data?></td>
                     <td> <a href="?page=cart&id=<?= $id?>&action=add" class="btn btn-success">add</a> <a href="?page=cart&id=<?= $id?>&action=remove" class="btn btn-danger">remove</a></td>
-                    <td><?= number_format($Montant,2)?> €</td>
+                    <td><?= $Montant?> €</td>
                 </tr>
             <?php
             }
             ?>
-                <tr><td colspan="5">Total a payer</td><td><?php echo $total ?>€</td></tr>
+                <tr><td colspan="5">Total a payer</td><td><?= number_format($total,2) ?>€</td></tr>
             </table>
             <a class="btn btn-warning" href="?page=cart&action=delete"> vider le panier</a>
         <?php
