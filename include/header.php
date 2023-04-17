@@ -1,8 +1,10 @@
 <?php 
 session_start();
-
-require_once ('function.php');
+require_once ('autoload.php');
 require_once ('variable.php');
+require_once ('function.php');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +43,8 @@ require_once ('variable.php');
           <a class="nav-link" href="?page=contact">contact</a>
         </li>
       </ul>
-      <div> <?php 
+      <div> 
+        <?php 
       if (isset($_SESSION['login']) && !empty($_SESSION['login'])){
         ?>
         <a href="?page=login" class="m-3"><?php echo $_SESSION['login'] ?></a>

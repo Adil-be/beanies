@@ -6,7 +6,7 @@ if (!isset($_SESSION['cart'])){
 
 if (isset($_GET['action'])){
     $action =$_GET['action'];
-    if($action == "delete"){
+    if($action == "empty"){
         unset($_SESSION['cart']);
     }
 }
@@ -15,7 +15,7 @@ if(isset($_GET['id']) && isset($_GET['action'])){
     
     $id=$_GET['id'];
  
-    if( array_key_exists($id,$beaniesTab)){
+    if( idExist($beaniesObj,$id)){
         if (!isset($_SESSION['cart'][$id])){
             $_SESSION['cart'][$id] =0;      
         }
@@ -28,6 +28,9 @@ if(isset($_GET['id']) && isset($_GET['action'])){
                 if($_SESSION['cart'][$id] <=0){
                     unset($_SESSION['cart'][$id]);
                 }
+                break;
+            case 'delete':
+                unset($_SESSION['cart'][$id]);
                 break;
         }
     }  
@@ -55,17 +58,25 @@ if(isset($_GET['id']) && isset($_GET['action'])){
             <?php
             $total=0;
             foreach($_SESSION['cart'] as $id => $data){
-                $beanie = $beaniesTab[$id];
-                $Montant=$data*$beanie['prix'];
+                $beanie =getById($beaniesObj, $id);
+                if(empty($beanie)){
+                    continue;
+                }
+                $Montant=$data*$beanie->getPrix();
                 $Montant=number_format( $Montant,2);
                 $total+= $Montant;
                 ?>
                 <tr>
                     <td><?= $id?></td>
-                    <td><?= $beanie['name']?></td>
-                    <td><?= $beanie['prix']?>€</td>
-                    <td><?= $data?></td>
-                    <td> <a href="?page=cart&id=<?= $id?>&action=add" class="btn btn-success">add</a> <a href="?page=cart&id=<?= $id?>&action=remove" class="btn btn-danger">remove</a></td>
+                    <td><?= $beanie->getName()?></td>
+                    <td class="text-center"><?= $beanie->getPrix()?>€</td>
+                    <td class="text-center">
+                        <a href="?page=cart&id=<?= $beanie->getId()?>&action=remove"><i class="bi bi-dash"></i></a>
+                        <?= $data?>
+                        <a href="?page=cart&id=<?= $beanie->getId()?>&action=add"><i class="bi bi-plus"></i></a>
+                    </td>
+                    <td>
+                        <a href="?page=cart&id=<?= $beanie->getId()?>&action=delete" class="btn btn-danger">delete</a></td>
                     <td><?= $Montant?> €</td>
                 </tr>
             <?php
@@ -73,7 +84,7 @@ if(isset($_GET['id']) && isset($_GET['action'])){
             ?>
                 <tr><td colspan="5">Total a payer</td><td><?= number_format($total,2) ?>€</td></tr>
             </table>
-            <a class="btn btn-warning" href="?page=cart&action=delete"> vider le panier</a>
+            <a class="btn btn-warning my-3" href="?page=cart&action=empty"> vider le panier</a>
         <?php
     }
     ?>
