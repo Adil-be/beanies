@@ -53,7 +53,7 @@ class Contact
         $this->message = $value;
         if (empty($this->email) || ctype_space($this->email)) {
             $this->errors[] = "le message doit etre non vide";
-        } elseif (strlen($this->email) < 15) {
+        } elseif (strlen($this->email) < 10) {
             $this->errors[] = "le message est trop court";
         }
 
