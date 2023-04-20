@@ -1,3 +1,6 @@
+<?php
+?>
+
 <section class="container">
   <div class="row justify-content-around my-5">
     <?php for ($i = 0; $i < 3; $i++) {

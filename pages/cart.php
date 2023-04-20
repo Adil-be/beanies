@@ -1,46 +1,17 @@
 <?php
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
+$cart = new Cart();
+$isCartModified = $cart->handle($_GET);
 
+if ($isCartModified) {
+    header("Location: ?page=cart");
 }
 
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-    if ($action == "empty") {
-        unset($_SESSION['cart']);
-    }
-}
-
-if (isset($_GET['id']) && isset($_GET['action'])) {
-
-    $id = $_GET['id'];
-
-    if (idExist($beaniesObj, $id)) {
-        if (!isset($_SESSION['cart'][$id])) {
-            $_SESSION['cart'][$id] = 0;
-        }
-        switch ($action) {
-            case 'add':
-                $_SESSION['cart'][$id]++;
-                break;
-            case 'remove':
-                $_SESSION['cart'][$id]--;
-                if ($_SESSION['cart'][$id] <= 0) {
-                    unset($_SESSION['cart'][$id]);
-                }
-                break;
-            case 'delete':
-                unset($_SESSION['cart'][$id]);
-                break;
-        }
-    }
-}
 
 ?>
 <section class="container">
     <h1>Panier</h1>
     <?php
-    if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    if (empty($cart->getContent())) {
         echo "votre panier est vide";
     } else {
         ?>
@@ -55,7 +26,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             </tr>
             <?php
             $total = 0;
-            foreach ($_SESSION['cart'] as $id => $data) {
+            foreach ($cart->getContent() as $id => $data) {
                 $beanie = getById($beaniesObj, $id);
                 if (empty($beanie)) {
                     continue;

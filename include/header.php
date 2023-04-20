@@ -22,7 +22,7 @@ require_once('function.php');
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
   <title>
-    <?php echo $title ?>
+    <?= $page->getTitle() ?>
   </title>
 </head>
 

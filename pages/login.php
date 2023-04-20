@@ -1,4 +1,7 @@
 <?php
+$page->setTitle("Connection");
+
+
 $error = [];
 if (isset($_POST['login']) && $_POST['password']) {
   $userName = trim($_POST['login']);
