@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('config.inc.php');
 require_once('autoload.php');
 require_once('variable.php');
 require_once('function.php');
