@@ -26,8 +26,16 @@ if ($isCartModified) {
             </tr>
             <?php
             $total = 0;
+            $beanieFactory = new BeanieFactory();
             foreach ($cart->getContent() as $id => $data) {
-                $beanie = getById($beaniesObj, $id);
+
+                $sql = "SELECT * FROM beanies WHERE id=:id";
+                $statement = $db->prepare($sql);
+                $statement->bindValue(":id", $id, PDO::PARAM_INT);
+                $success = $statement->execute();
+                $result = $statement->fetchall();
+                $beanie = $beanieFactory->create($result[0]);
+
                 if (empty($beanie)) {
                     continue;
                 }

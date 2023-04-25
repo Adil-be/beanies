@@ -1,13 +1,13 @@
 <?php
 class Beanie
 {
-    const AVAILABLES_SIZES = ['S', 'M', 'L', 'XL'];
+    const AVAILABLES_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
     const AVAILABLES_MATERIALS = ['laine', 'soie', 'coton', 'cachemire'];
 
     protected ?int $id;
     protected ?string $name;
     protected ?string $pathImg;
-    protected float $prix = 0.0;
+    protected float $price = 0.0;
     protected ?string $description;
     protected ?array $size = [];
     protected ?array $material = [];
@@ -20,10 +20,6 @@ class Beanie
     public function getAvailableMaterials()
     {
         return self::AVAILABLES_MATERIALS;
-    }
-
-    public function __construct()
-    {
     }
     public function getId()
     {
@@ -39,7 +35,7 @@ class Beanie
     }
     public function getPrix()
     {
-        return $this->prix;
+        return $this->price;
     }
     public function getDescription()
     {
@@ -63,7 +59,7 @@ class Beanie
     }
     public function setPrix(float $number)
     {
-        $this->prix = $number;
+        $this->price = $number / 100;
         return $this;
     }
     public function setDescritpion(string $text)
@@ -74,7 +70,8 @@ class Beanie
 
     public function GetSizes()
     {
-        return $this->size;
+        if ($this->size)
+            return $this->size;
     }
     public function setSizes(array $sizes)
     {

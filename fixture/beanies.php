@@ -45,31 +45,16 @@ $sql = 'INSERT INTO beanies ( name, pathImg, price, description, size, material)
 
 $statement = $db->prepare($sql);
 
-$name = NULL;
-$pathImg = NULL;
-$price = NULL;
-$description = NULL;
-$size = NULL;
-$material = NULL;
-
-$statement->bindParam(":name", $name, PDO::PARAM_STR);
-$statement->bindParam(":pathImg", $pathImg, PDO::PARAM_STR);
-$statement->bindParam(":price", $price, PDO::PARAM_INT);
-$statement->bindParam(":description", $description, PDO::PARAM_STR);
-$statement->bindParam(":size", $size, PDO::PARAM_STR);
-$statement->bindParam(":material", $material, PDO::PARAM_STR);
-
 
 foreach ($beaniesObj as $object) {
-    $name = $object->getName();
-    $pathImg = $object->getPath();
-    $price = $object->getPrix() * 100;
-    $description = $object->getDescription();
-    $size = json_encode($object->GetSizes());
-    $material = json_encode($object->GetMaterials());
+    $statement->bindValue(":name", $object->getName(), PDO::PARAM_STR);
+    $statement->bindValue(":pathImg", $object->getPath(), PDO::PARAM_STR);
+    $statement->bindValue(":price", $object->getPrix() * 100, PDO::PARAM_INT);
+    $statement->bindValue(":description", $object->getDescription(), PDO::PARAM_STR);
+    $statement->bindValue(":size", json_encode($object->GetSizes()), PDO::PARAM_STR);
+    $statement->bindValue(":material", json_encode($object->GetMaterials()), PDO::PARAM_STR);
 
     $statement->execute();
 
 }
-
 ?>
