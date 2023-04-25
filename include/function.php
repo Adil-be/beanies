@@ -1,4 +1,6 @@
 <?php
+
+require_once "include/config.inc.php";
 function prixHT(float $prixTTC)
 {
     return number_format($prixTTC / 1.2, 2, ".", " ");
@@ -44,14 +46,17 @@ function afficherProduit($produit)
 }
 
 
-function getById(array $Beanies, ?int $id)
+function getById(?int $id)
 {
-    foreach ($Beanies as $Beanie) {
-        if ($Beanie->getId() == $id) {
-            return $Beanie;
-        }
-    }
-    return NULL;
+    $sql = "SELECT * FROM beanies WHERE id = :id";
+    $statement = $db->prepare($sql);
+    $statement->bindValue(":id", $id, PDO::PARAM_INT);
+    $result = $statement->fetchall();
+    $beanieFactory = new BeanieFactory();
+    $beanie = $beanieFactory->create($result);
+
+    return $beanie;
+
 }
 
 function idExist(array $Beanies, ?int $id)

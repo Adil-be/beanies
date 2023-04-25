@@ -1,13 +1,23 @@
 <?php
+$sql = 'SELECT * FROM beanies';
+$statement = $db->prepare($sql);
+$statement->setFetchMode(PDO::FETCH_ASSOC);
+$success = $statement->execute();
+$results = $statement->fetchall();
+$beanieFactory = new BeanieFactory();
+$beanies = [];
+
+
+foreach ($results as $beanieData) {
+    $beanies[] = $beanieFactory->create($beanieData);
+}
 
 ?>
 
 <section class="container">
     <?php
-    var_dump($_POST);
     $beanieFiltered = new BeanieFilter($_POST);
-    $beanieFiltered->Filter($beaniesObj);
-    var_dump($beanieFiltered);
+    $beanieFiltered->Filter($beanies);
     ?>
     <h1>Listes bonnets</h1>
     <form method="POST">
