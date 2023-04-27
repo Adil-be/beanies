@@ -1,4 +1,8 @@
 <?php
+namespace Service;
+
+use Model\Beanie;
+
 class BeanieFactory
 {
 

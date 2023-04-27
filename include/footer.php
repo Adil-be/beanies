@@ -1,5 +1,5 @@
 <footer>
-    <p>ceci est un footer</p>
+    <div class="text-center">Adel B © tout droit reservé de mes ********</div>
 </footer>
 </body>
 

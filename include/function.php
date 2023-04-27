@@ -45,20 +45,6 @@ function afficherProduit($produit)
     <?php
 }
 
-
-function getById(?int $id)
-{
-    $sql = "SELECT * FROM beanies WHERE id = :id";
-    $statement = $db->prepare($sql);
-    $statement->bindValue(":id", $id, PDO::PARAM_INT);
-    $result = $statement->fetchall();
-    $beanieFactory = new BeanieFactory();
-    $beanie = $beanieFactory->create($result);
-
-    return $beanie;
-
-}
-
 function idExist(array $Beanies, ?int $id)
 {
     foreach ($Beanies as $Beanie) {

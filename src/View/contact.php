@@ -1,25 +1,6 @@
 <?php
-$contact = new Contact($_POST);
 
 if ($contact->isSubmitted() && $contact->isValid()) {
-
-  $sql = "INSERT INTO contact (sujet, email, message)
-  VALUES (:sujet, :email, :message)";
-
-  $statement = $db->prepare($sql);
-
-
-
-  $sujet = $contact->getSujet();
-  $email = $contact->getEmail();
-  $message = $contact->getMessage();
-
-  $statement->bindParam(":sujet", $sujet, PDO::PARAM_STR);
-  $statement->bindParam(":email", $email, PDO::PARAM_STR);
-  $statement->bindParam(":message", $message, PDO::PARAM_STR);
-
-  $statement->execute();
-
   ?>
   <div class="alert alert-success" role="alert">
     message envoyé!

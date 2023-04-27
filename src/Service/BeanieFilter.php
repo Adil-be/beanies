@@ -1,4 +1,6 @@
 <?php
+namespace Service;
+
 class BeanieFilter
 {
     protected ?string $material = null;
@@ -53,7 +55,7 @@ class BeanieFilter
 
     public function setMinPrice(?string $minPrice): self
     {
-        $this->minPrice = $minPrice;
+        $this->minPrice = floatval($minPrice);
         return $this;
     }
 
@@ -64,7 +66,7 @@ class BeanieFilter
 
     public function setMaxPrice(?string $maxPrice): self
     {
-        $this->maxPrice = $maxPrice;
+        $this->maxPrice = floatval($maxPrice);
         return $this;
     }
 
@@ -122,6 +124,3 @@ class BeanieFilter
 
 
 }
-
-
-?>

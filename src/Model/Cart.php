@@ -1,4 +1,5 @@
 <?php
+namespace Model;
 
 class Cart
 {
@@ -91,9 +92,6 @@ class Cart
         }
         return false;
     }
-
-
-
     public function getContent()
     {
         return $this->content;

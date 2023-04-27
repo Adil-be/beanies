@@ -1,4 +1,5 @@
 <?php
+namespace Model;
 
 class Contact
 {
@@ -94,5 +95,3 @@ class Contact
     }
 
 }
-
-?>

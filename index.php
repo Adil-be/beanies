@@ -1,11 +1,17 @@
 <?php
-require_once 'classes/Page.php';
+
+require_once 'include/autoload.php';
+require_once 'src/Model/Page.php';
+require_once 'include/config.inc.php';
+
+use Model\Page;
+
 $page = new Page($_GET);
 
-ob_start();
-include 'include/header.php';
-include 'pages/' . $page->getName() . '.php';
-include 'include/footer.php';
-ob_end_flush();
+$pageName = $page->getName();
+$controllerClass = $page->getController();
+$controller = new $controllerClass($pageName, $db);
+$controller->render();
+
 
 ?>
