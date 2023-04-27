@@ -1,6 +1,7 @@
 <?php
 
-require_once "include/config.inc.php";
+use Service\BeanieFactory;
+
 function prixHT(float $prixTTC)
 {
     return number_format($prixTTC / 1.2, 2, ".", " ");
@@ -64,6 +65,19 @@ function displayFilters($filter, $namePOST)
         <?= $filter ?>
     </option>
     <?php
+}
+
+function getBeanieById($db, ?int $id)
+{
+    $sql = "SELECT * FROM beanies WHERE id = :id";
+    $statement = $db->prepare($sql);
+    $statement->bindValue(":id", $id, PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetch();
+    $beanieFactory = new BeanieFactory();
+    $beanie = $beanieFactory->create($result);
+
+    return $beanie;
 }
 
 ?>

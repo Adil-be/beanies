@@ -8,7 +8,7 @@
 
     } else {
         ?>
-        <table>
+        <table class="mx-auto">
             <tr>
                 <th>id</th>
                 <th>Nom</th>
@@ -42,7 +42,7 @@
                         <a href="?page=cart&id=<?= $beanie->getId() ?>&action=delete" class="btn btn-danger">delete</a>
                     </td>
                     <td>
-                        <?= $beanie->getPrix() * $quantity ?> €
+                        <?= number_format($beanie->getPrix() * $quantity, 2) ?> €
                     </td>
                 </tr>
                 <?php
@@ -55,7 +55,7 @@
                 </td>
             </tr>
         </table>
-        <a class="btn btn-warning my-3" href="?page=cart&action=empty"> vider le panier</a>
+        <div class="text-center"><a class="btn btn-warning my-3" href="?page=cart&action=empty"> vider le panier</a></div>
         <?php
     }
     ?>
