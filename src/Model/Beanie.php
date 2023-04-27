@@ -37,7 +37,7 @@ class Beanie
     }
     public function getPrix()
     {
-        return $this->price;
+        return number_format($this->price, 2);
     }
     public function getDescription()
     {

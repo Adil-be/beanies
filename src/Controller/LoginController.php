@@ -12,9 +12,6 @@ class LoginController extends AbstractController
         $login = new Login;
         $login->handle($_POST);
 
-
-
-
         return ["login" => $login];
     }
 }

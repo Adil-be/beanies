@@ -12,8 +12,7 @@ class CartController extends AbstractController
     public function getContent()
     {
         $this->setPageTitle("Panier");
-
-        $param = [];
+        $param = ["total" => null, "cartBeanies" => []];
 
         $cart = new Cart();
         $isCartModified = $cart->handle($_GET);
@@ -23,27 +22,18 @@ class CartController extends AbstractController
         }
         if (!empty($cart->getContent())) {
             $total = 0;
-            $beanieFactory = new BeanieFactory();
             $cartBeanies = [];
-            foreach ($cart->getContent() as $id => $data) {
-
-                $sql = "SELECT * FROM beanies WHERE id=:id";
-                $statement = $this->db->prepare($sql);
-                $statement->bindValue(":id", $id, PDO::PARAM_INT);
-                $success = $statement->execute();
-                $result = $statement->fetch();
-                $beanie = $beanieFactory->create($result);
+            foreach ($cart->getContent() as $id => $quantity) {
+                $beanie = getBeanieById($this->db, $id);
 
                 if (empty($beanie)) {
                     continue;
                 }
-                $cartBeanies[] = ["beanie" => $beanie, "quantity" => $data];
-                $Montant = $data * $beanie->getPrix();
-                $Montant = number_format($Montant, 2);
-                $total += $Montant;
+                $cartBeanies[] = ["beanie" => $beanie, "quantity" => $quantity];
 
+                $total += $quantity * $beanie->getPrix();
             }
-            $param[] = ["total" => $total, "cartBeanies" => $cartBeanies];
+            $param = ["total" => $total, "cartBeanies" => $cartBeanies];
         }
         return $param;
     }

@@ -6,31 +6,27 @@ use PDO;
 
 class ContactController extends AbstractController
 {
-
-
     public function getContent()
     {
         $this->setPageTitle("Contact");
 
         $contact = new Contact($_POST);
         if ($contact->isSubmitted() && $contact->isValid()) {
-
-            $sql = "INSERT INTO contact (sujet, email, message)
-            VALUES (:sujet, :email, :message)";
-
-            $statement = $this->db->prepare($sql);
-
-            $sujet = $contact->getSujet();
-            $email = $contact->getEmail();
-            $message = $contact->getMessage();
-
-            $statement->bindParam(":sujet", $sujet, PDO::PARAM_STR);
-            $statement->bindParam(":email", $email, PDO::PARAM_STR);
-            $statement->bindParam(":message", $message, PDO::PARAM_STR);
-
-            $statement->execute();
+            $this->setRequestSQL($contact);
         }
 
         return ["contact" => $contact];
+    }
+    public function setRequestSQL(Contact $contact)
+    {
+        $sql = "INSERT INTO contact (sujet, email, message)
+        VALUES (:sujet, :email, :message)";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(":sujet", $contact->getSujet(), PDO::PARAM_STR);
+        $statement->bindValue(":email", $contact->getEmail(), PDO::PARAM_STR);
+        $statement->bindValue(":message", $contact->getMessage(), PDO::PARAM_STR);
+        $statement->execute();
+
     }
 }

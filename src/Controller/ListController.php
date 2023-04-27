@@ -10,19 +10,16 @@ use PDO;
 class ListController extends AbstractController
 {
     protected ?string $pageTitle = "Tous nos beanies";
+
+    protected ?array $fetchResult = [];
     public function getContent()
     {
         $this->setPageTitle("Tous nos Beanies");
-
-        $sql = 'SELECT * FROM beanies';
-        $statement = $this->db->prepare($sql);
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-        $statement->execute();
-        $results = $statement->fetchall();
+        $this->setFetchResult();
         $beanieFactory = new BeanieFactory();
         $beanies = [];
 
-        foreach ($results as $beanieData) {
+        foreach ($this->getFetchResult() as $beanieData) {
             $beanies[] = $beanieFactory->create($beanieData);
         }
         $beanieFiltered = new BeanieFilter($_POST);
@@ -38,4 +35,24 @@ class ListController extends AbstractController
         ];
     }
 
+
+    /**
+     * @return array|null
+     */
+    public function getFetchResult(): ?array
+    {
+
+        return $this->fetchResult;
+    }
+
+    public function setFetchResult(): self
+    {
+        $sql = 'SELECT * FROM beanies';
+        $statement = $this->db->prepare($sql);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $statement->execute();
+        $results = $statement->fetchall();
+        $this->fetchResult = $results;
+        return $this;
+    }
 }
