@@ -12,7 +12,6 @@ class CartController extends AbstractController
     public function getContent()
     {
         $this->setPageTitle("Panier");
-
         $param = ["total" => null, "cartBeanies" => []];
 
         $cart = new Cart();
@@ -31,7 +30,7 @@ class CartController extends AbstractController
                     continue;
                 }
                 $cartBeanies[] = ["beanie" => $beanie, "quantity" => $quantity];
-                ;
+
                 $total += $quantity * $beanie->getPrix();
             }
             $param = ["total" => $total, "cartBeanies" => $cartBeanies];
