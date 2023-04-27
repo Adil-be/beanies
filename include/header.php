@@ -1,13 +1,3 @@
-<?php
-session_start();
-require_once('config.inc.php');
-require_once('autoload.php');
-require_once('variable.php');
-require_once('function.php');
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +13,7 @@ require_once('function.php');
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
   <title>
-    <?= $page->getTitle() ?>
+    <?= $pageTitle ?>
   </title>
 </head>
 
@@ -93,3 +83,4 @@ require_once('function.php');
       <?php
     }
   }
+  ?>

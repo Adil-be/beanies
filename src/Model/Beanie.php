@@ -1,4 +1,6 @@
 <?php
+namespace Model;
+
 class Beanie
 {
     const AVAILABLES_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
@@ -94,4 +96,3 @@ class Beanie
         return $this;
     }
 }
-?>

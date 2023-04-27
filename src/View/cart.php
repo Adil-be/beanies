@@ -1,18 +1,11 @@
-<?php
-$cart = new Cart();
-$isCartModified = $cart->handle($_GET);
-
-if ($isCartModified) {
-    header("Location: ?page=cart");
-}
-
-
-?>
 <section class="container">
-    <h1>Panier</h1>
+    <h1 class="text-center">Panier</h1>
     <?php
-    if (empty($cart->getContent())) {
-        echo "votre panier est vide";
+    if (empty($cartBeanies)) {
+        ?>
+        <div class="text-center">votre panier est vide"</div>
+        <?php
+
     } else {
         ?>
         <table>
@@ -25,27 +18,14 @@ if ($isCartModified) {
                 <th>total</th>
             </tr>
             <?php
-            $total = 0;
-            $beanieFactory = new BeanieFactory();
-            foreach ($cart->getContent() as $id => $data) {
+            foreach ($cartBeanies as $item) {
+                $beanie = $item["beanie"];
+                $quantity = $item["quantity"];
 
-                $sql = "SELECT * FROM beanies WHERE id=:id";
-                $statement = $db->prepare($sql);
-                $statement->bindValue(":id", $id, PDO::PARAM_INT);
-                $success = $statement->execute();
-                $result = $statement->fetchall();
-                $beanie = $beanieFactory->create($result[0]);
-
-                if (empty($beanie)) {
-                    continue;
-                }
-                $Montant = $data * $beanie->getPrix();
-                $Montant = number_format($Montant, 2);
-                $total += $Montant;
                 ?>
                 <tr>
                     <td>
-                        <?= $id ?>
+                        <?= $beanie->getId() ?>
                     </td>
                     <td>
                         <?= $beanie->getName() ?>
@@ -55,14 +35,14 @@ if ($isCartModified) {
                     </td>
                     <td class="text-center">
                         <a href="?page=cart&id=<?= $beanie->getId() ?>&action=remove"><i class="bi bi-dash"></i></a>
-                        <?= $data ?>
+                        <?= $quantity ?>
                         <a href="?page=cart&id=<?= $beanie->getId() ?>&action=add"><i class="bi bi-plus"></i></a>
                     </td>
                     <td>
                         <a href="?page=cart&id=<?= $beanie->getId() ?>&action=delete" class="btn btn-danger">delete</a>
                     </td>
                     <td>
-                        <?= $Montant ?> €
+                        <?= $beanie->getPrix() * $quantity ?> €
                     </td>
                 </tr>
                 <?php
